@@ -18,7 +18,7 @@ export interface MovieDTO {
 }
 
 // Movie Description DTO Shapes
-interface UserReviews {
+export interface UserReviews {
     author: string;
     reviewSummary: string;
     reviewBody: string;
@@ -44,7 +44,7 @@ export interface MovieDescriptionDTO {
 		reviewCount: number;
 		bestRating: number;
 		worstRating: number;
-		userReviews: UserReviews[] | [];
+		userReviews: UserReviews | UserReviews[] | [] | null;
 	} | null;
 	genre: string[] | [];
 	actors: string[] | [];
@@ -52,28 +52,6 @@ export interface MovieDescriptionDTO {
 	keywords: string[] | [];
 	productionCompany: string;
 	similarMovies: SimilarMovies[] | [];
-	synopsis: string;
+	// synopsis?: string;
 }
-
-// IMDb Bot Response Shapes 
-// interface MovieDescription {
-//     "#TITLE": string; 
-//     "#YEAR": number;
-//     "#IMDB_ID": string; 
-//     "#RANK": number;
-//     "#ACTORS": string;
-//     "#AKA": string; 
-//     "#IMDB_URL": string;
-//     "#IMDB_IV": string; 
-//     "#IMG_POSTER": string;
-//     "photo_width": number;
-//     "photo_height": number;
-
-// }
-
-// export interface MovieSearchResponse{
-//     ok: boolean; 
-//     description: MovieDescription[] | []; 
-//     error_code: number;
-// }
 

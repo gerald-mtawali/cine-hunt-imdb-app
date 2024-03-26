@@ -1,7 +1,5 @@
-// import { useState } from "react";npm install 
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
 import { Header } from "./components/Header";
+import { SearchBar } from "./components/Search/SearchBar";
 import "./App.css";
 import { Outlet } from "react-router-dom";
 
@@ -9,6 +7,7 @@ function App() {
 	return (
 		<>
 			<Header />
+			<SearchBar />
 			<div id="detail">
 				<Outlet />
 			</div>
