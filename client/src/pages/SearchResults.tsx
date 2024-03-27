@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 import styled from "@emotion/styled";
 import { SearchResultCard } from "../components/Search/SearchResultCard";
-import { getMovies, clearMovieResults, setStatus } from "../redux/searchMovieSlice";
+import {
+	getMovies,
+	clearMovieResults,
+	setStatus,
+} from "../redux/searchMovieSlice";
 import { Spinner } from "../components/common/Spinner";
 import { useParams } from "react-router-dom";
 // import { MovieDTO } from "../api/cinehunt-movies-dtos.types";
@@ -9,21 +13,40 @@ import { useAppSelector, useAppDispatch } from "../redux/hooks";
 import { RootState } from "../redux/store";
 import { MovieDTO } from "cinehunt-sdk";
 
+const PageDiv = styled.div`
+    display:flex;
+    flex-direction: column;
+	min-width: 80vw;
+	height: 75vh;
+    background-color: #1a2942;
+	border: 2px solid yellow;
+`;
 const ScrollableDiv = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	max-height: 500px;
+	max-height: 72vh; 
 	overflow-y: auto;
 	overflow-x: hidden;
-	width: 80%;
+	min-width: 80%;
 	margin: 5px;
-	background-color: #1a2942;
+    background: transparent; 
+    border: 1px solid red;
+`;
+
+const ContentContainer = styled.div`
+    flex: column; 
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    width: 80%; 
+    /* border: 1px solid lime;  */
 `;
 
 export function SearchPage() {
 	const { movieTitle } = useParams();
-	console.log("Path movie title: ", movieTitle);
+	// console.log("Path movie title: ", movieTitle);
 	const searchResults = useAppSelector(
 		(state: RootState) => state.movieResults.movies
 	);
@@ -42,11 +65,13 @@ export function SearchPage() {
 	useEffect(() => {
 		if (movieTitle && movieName !== "") {
 			console.log("run api call for finding movies");
-            console.log(`Requesting the movie: ${movieName}\nsearch status: ${searchStatus}`)
+			console.log(
+				`Requesting the movie: ${movieName}\nsearch status: ${searchStatus}`
+			);
 			dispatch(getMovies(movieName));
-		} else if ( movieName === "") {
+		} else if (movieName === "") {
 			dispatch(clearMovieResults());
-            dispatch(setStatus("idle"));
+			dispatch(setStatus("idle"));
 		}
 	}, [movieName, dispatch]);
 
@@ -60,8 +85,8 @@ export function SearchPage() {
 		// content becomes the search results
 		if (!searchResults || searchResults.length === 0) {
 			content = <div>No Movies Found!</div>;
-            // set the status to idle once we've extracted the search results data
-            dispatch(setStatus("idle")); 
+			// set the status to idle once we've extracted the search results data
+			dispatch(setStatus("idle"));
 		} else {
 			content = searchResults.map((movieResult: MovieDTO) => {
 				return <SearchResultCard movie={movieResult} />;
@@ -73,10 +98,14 @@ export function SearchPage() {
 
 	return (
 		<>
-			<ScrollableDiv>
-				<h1> Search Page </h1>
-				{content}
-			</ScrollableDiv>
+			<PageDiv>
+                <h1> Search Page </h1>
+				<ScrollableDiv>
+                    <ContentContainer>
+                        {content}
+                    </ContentContainer>
+				</ScrollableDiv>
+			</PageDiv>
 		</>
 	);
 }

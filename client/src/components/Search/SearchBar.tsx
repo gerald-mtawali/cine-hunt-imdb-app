@@ -18,10 +18,11 @@ const SearchContainer = styled.div`
 	align-items: center;
 	align-content: center;
 	border-radius: 4px;
-	height: 30px;
+	max-height: 10vh;
 	width: 70%;
 	border: 1px solid #e9d05b;
 	background-color: rgba(58, 92, 193, 0.3);
+	margin-bottom: 20px;
 `;
 
 const SearchIcon = styled.img`
@@ -62,7 +63,6 @@ export function SearchBar() {
 		target: { value: SetStateAction<string> };
 	}) => {
 			setMovieInput(event.target.value);
-			console.log(movieInput)	
 	};
 
 	const setNewName = () => {
@@ -73,11 +73,6 @@ export function SearchBar() {
 			dispatch(clearMovieResults());
 		}
 	};
-
-	// useEffect(() => {
-	// 	console.log("Updated Movie Name: ", movieName);
-	// 	// navigate(`/search/${movieName}`);
-	// }, [movieName, navigate]);
 
 	const handleLinkPress = () => {
 		setNewName(); 

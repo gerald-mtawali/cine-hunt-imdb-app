@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 
 const HeaderContainer = styled.div`
-	width: 80vw;
-	height: 120px;
+	min-width: 80vw;
+	min-height: 12vh;
+    margin: 10px;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	align-content: center;
 	align-items: center;
 	justify-content: center;
-	border: 1px solid #e5e5e5;
 `;
 
 const LogoContainer = styled.div`
@@ -19,10 +19,15 @@ const LogoContainer = styled.div`
 `;
 
 const Logo = styled.img`
-	width: 80%;
-	height: 100%;
+	min-width: 353px;
+	min-height: 56px;
+
 	object-fit: contain;
 `;
+const DividerLine = styled.hr`
+	border: 1px solid rgba(255, 255, 253, 0.5); 
+    width: 100%;
+`; 
 
 export function Header() {
 	return (
@@ -32,6 +37,7 @@ export function Header() {
 					<Logo src={CineHuntLogo} />
 				</Link>
 			</LogoContainer>
+            <DividerLine />
 		</HeaderContainer>
 	);
 }
