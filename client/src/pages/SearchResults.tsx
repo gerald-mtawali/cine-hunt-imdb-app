@@ -8,7 +8,6 @@ import {
 } from "../redux/searchMovieSlice";
 import { Spinner } from "../components/common/Spinner";
 import { useParams } from "react-router-dom";
-// import { MovieDTO } from "../api/cinehunt-movies-dtos.types";
 import { useAppSelector, useAppDispatch } from "../redux/hooks";
 import { RootState } from "../redux/store";
 import { MovieDTO } from "cinehunt-sdk";

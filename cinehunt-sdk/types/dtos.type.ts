@@ -14,7 +14,7 @@ export interface MovieDTO {
 	rank: number;
 	actors: string;
 	imdbUrl: string;
-	posterImg: MoviePosterImage | null;
+	posterImg?: MoviePosterImage | null;
 }
 
 // Movie Description DTO Shapes

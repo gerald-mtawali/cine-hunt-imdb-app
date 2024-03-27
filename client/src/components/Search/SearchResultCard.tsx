@@ -1,5 +1,4 @@
 import { MovieDTO } from "cinehunt-sdk";
-// import { MovieDTO } from "../../api/cinehunt-movies-dtos.types";
 import styled from "@emotion/styled";
 import NoPosterImage from "../../assets/image/No-Movie-Icon.png";
 import { Link } from "react-router-dom";
@@ -63,18 +62,10 @@ interface SearchPageProps {
 export const SearchResultCard: React.FC<SearchPageProps> = ({ movie }) => {
     const dispatch = useAppDispatch(); 
 
-	console.log(
-		"Rendering the search cards for the movie: \n",
-		movie,
-		"\n",
-		movie.title
-	);
-
     const handleClick = () => {
         // set the movie name and the imbdb id 
         dispatch(setTitle(movie.title));
         dispatch(setImdbId(movie.imdbId));
-
     }
 	return (
 		<CardContainer>

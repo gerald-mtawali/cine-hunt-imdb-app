@@ -17,9 +17,10 @@ const SearchContainer = styled.div`
 	flex-wrap: nowrap;
 	align-items: center;
 	align-content: center;
+	justify-content: space-between;
 	border-radius: 4px;
 	max-height: 10vh;
-	width: 70%;
+	width: 50vw;
 	border: 1px solid #e9d05b;
 	background-color: rgba(58, 92, 193, 0.3);
 	margin-bottom: 20px;
