@@ -12,6 +12,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 
 const SearchContainer = styled.div`
+	align-self: center;
 	display: flex;
 	flex-wrap: nowrap;
 	align-items: center;
@@ -52,7 +53,7 @@ const SearchLink = styled.div`
 `;
 
 export function SearchBar() {
-	const movieName = useAppSelector(selectMovieName);
+	// const movieName = useAppSelector(selectMovieName);
 	const dispatch = useAppDispatch();
 	const [movieInput, setMovieInput] = useState<string>("");
 	let navigate = useNavigate();
@@ -93,11 +94,6 @@ export function SearchBar() {
 					type="text"
 					onChange={handleInput}
 					spellCheck="false"
-					// onKeyDown={(e) => {
-					// 	if (e.key === "Enter") {
-					// 		setNewName();
-					// 	}
-					// }}
 				/>
 				<SearchLink>
 						<SearchIcon src={yellowSearchIcon} onClick={handleLinkPress}/>

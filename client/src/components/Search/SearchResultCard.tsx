@@ -1,4 +1,4 @@
-// import { MovieDTO } from "cinehunt-sdk";
+import { MovieDTO } from "cinehunt-sdk";
 // import { MovieDTO } from "../../api/cinehunt-movies-dtos.types";
 import styled from "@emotion/styled";
 import NoPosterImage from "../../assets/image/No-Movie-Icon.png";
@@ -36,15 +36,17 @@ const FilmDetailsContainer = styled.div`
 	}
 `;
 
-export function SearchResultCard(movieItem: any) {
+interface SearchPageProps {
+    movie: MovieDTO; 
+}
+
+export const SearchResultCard: React.FC<SearchPageProps> = ({movie}) => {
 	console.log(
 		"Rendering the search cards for the movie: \n",
-		movieItem,
+		movie,
 		"\n",
-		movieItem.movieItem.title
+		movie.title
 	);
-	const movie = movieItem.movieItem;
-	// use this to build the card for the search results
 	return (
 		<CardContainer>
 			<PosterImage

@@ -12,3 +12,21 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  justify-items: center;
+  min-height: 100vh; /* Ensure the page takes up at least the full viewport height */
+  min-width: 90vw; 
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Syne", sans-serif; /* Use Syne font for headers */
+}
+
+p, a {
+  font-family: Inter, sans-serif; /* Use Inter font for paragraphs and links */
+}

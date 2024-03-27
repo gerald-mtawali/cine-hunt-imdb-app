@@ -1,13 +1,12 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { getMovieByName } from "../api/movies";
-// import { CineHuntSdk } from "cinehunt-sdk";
-import { MovieDTO } from "../api/cinehunt-movies-dtos.types";
+// import { getMovieByName } from "../api/movies";
+import { getMovieByName, MovieDTO } from "cinehunt-sdk";
+// import { MovieDTO } from "../api/cinehunt-movies-dtos.types";
 import { RootState } from "./store";
 
 export interface MovieResultState {
 	name: string;
 	movies: MovieDTO[];
-	// cinehuntSdk: CineHuntSdk,
 	status: "idle" | "loading" | "succeeded" | "failed";
 	error: string | null | undefined;
 }
@@ -15,7 +14,6 @@ export interface MovieResultState {
 const initialState: MovieResultState = {
 	name: "",
 	movies: [],
-	// cinehuntSdk: new  CineHuntSdk("https://search.imdbot.workers.dev"),
 	status: "idle",
 	error: null,
 };
@@ -66,7 +64,7 @@ export const movieResultsSlice = createSlice({
 	},
 });
 
-export const { setMovieName, clearMovieName, clearMovieResults } =
+export const { setMovieName, clearMovieName, clearMovieResults, setStatus } =
 	movieResultsSlice.actions;
 
 export const selectMovieResults = (state: RootState) =>

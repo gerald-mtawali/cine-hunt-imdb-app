@@ -1,4 +1,4 @@
-import { Header } from "./components/Header";
+import { Header } from "./components/common/Header";
 import { SearchBar } from "./components/Search/SearchBar";
 import "./App.css";
 import { Outlet } from "react-router-dom";

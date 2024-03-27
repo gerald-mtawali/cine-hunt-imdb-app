@@ -12,5 +12,3 @@ export const movieDetailsSlice = createSlice({
     initialState, 
     reducers:{}
 })
-
-// create a thunk for fetching movie details from the cinehuntsdk api 
