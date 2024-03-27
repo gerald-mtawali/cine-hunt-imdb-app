@@ -22,11 +22,11 @@ export const PosterBackgroundDiv = styled.div<styledProps>`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 100%; // 100% of the viewport width
-	height: 1390px; // 100% of the viewport height
+	width: 100%; 
+	height: 1390px; 
 	background-image: url(${(props) => props.imageUrl});
-	background-size: cover; // Cover the entire div with the image
-	background-position: center; // Center the background image
+	background-size: cover; 
+	background-position: center; 
 `;
 
 const TransparentDiv = styled.div`

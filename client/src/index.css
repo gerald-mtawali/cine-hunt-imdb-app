@@ -25,9 +25,9 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Syne", sans-serif; /* Use Syne font for headers */
+  font-family: "Syne", sans-serif; 
 }
 
 p, a {
-  font-family: Inter, sans-serif; /* Use Inter font for paragraphs and links */
+  font-family: Inter, sans-serif; 
 }
