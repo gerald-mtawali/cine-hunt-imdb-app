@@ -7,7 +7,6 @@ export const PageDiv = styled.div`
 	min-width: 80vw;
 	height: 75vh;
     background-color: #1a2942;
-	border: 2px solid yellow;
 `;
 
 export const ScrollableDiv = styled.div`
@@ -20,7 +19,6 @@ export const ScrollableDiv = styled.div`
 	min-width: 80%;
 	margin: 5px;
     background: transparent; 
-    border: 1px solid red;
 `;
 
 export const ContentContainer = styled.div`
