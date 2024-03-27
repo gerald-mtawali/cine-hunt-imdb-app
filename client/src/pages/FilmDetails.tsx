@@ -71,11 +71,6 @@ export function FilmDetailsPage() {
 		(state: RootState) => state.movieDetails.status
 	);
 
-	if (title != "") {
-		console.log("The selected movie title is: ", title);
-		console.log("The selected imdb id is: ", imdbId);
-	}
-	console.log();
 	useEffect(() => {
 		if (movieTitle && title != "" && detailsStatus === "idle") {
 			// only get it if we haven't made the request already
@@ -89,7 +84,6 @@ export function FilmDetailsPage() {
 	} else if (movieTitle && detailsStatus === "loading") {
 		content = <Spinner text={`Loading Details for ${title} ...`} />;
 	} else if (detailsStatus === "succeeded") {
-		console.log("Render the Details Page Here");
 		if (movieDetails) {
 			// get the imageUrl
 			const { posterImg } = movieDetails;
@@ -122,8 +116,6 @@ export function FilmDetailsPage() {
 	} else if (detailsStatus === "failed") {
 		content = <div>{error}</div>;
 	}
-
-	console.log(`The selected movie was: ${movieTitle}`);
 
 	return (
 		<>

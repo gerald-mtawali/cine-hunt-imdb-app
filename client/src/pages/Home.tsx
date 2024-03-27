@@ -2,8 +2,8 @@ import React, {useEffect} from "react";
 import { MovieDTO } from "cinehunt-sdk";
 import { PageDiv, ScrollableDiv } from "../components/common/CommonStyledComponents";
 import { MovieCard } from "../components/Home/MovieCard";
-import DummyData from '../data/movieSearch.json'; 
-import { getRandomMovies, setStatus } from "../redux/randomMoviesSlice";
+// import DummyData from '../data/movieSearch.json'; 
+import { getRandomMovies } from "../redux/randomMoviesSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { Spinner } from "../components/common/Spinner";
 import { RootState } from "../redux/store";
@@ -21,40 +21,45 @@ const HomeGridContainer = styled.div`
 
 export function HomePage() {
     const dispatch = useAppDispatch(); 
-    const dummyMovies:MovieDTO[] = DummyData; 
+    // const dummyMovies:MovieDTO[] = DummyData; 
 
-    const movies = useAppSelector( (state: RootState) => state.randomMovies.movies);
+    const movies:MovieDTO[] = useAppSelector( (state: RootState) => state.randomMovies.movies);
     const randomRequestStatus = useAppSelector( (state: RootState) => state.randomMovies.status);
     const randomRequestError = useAppSelector( (state: RootState) => state.randomMovies.error);
 
-    // useEffect(() => {
-    //     if (randomRequestStatus === 'idle') {
-    //         dispatch(getRandomMovies())
-    //     }
+    useEffect(() => {
+        if (randomRequestStatus === 'idle') {
+            dispatch(getRandomMovies())
+        }
 
-    // }, [movies, dispatch]); 
+    }, [movies, dispatch]); 
 
     let content; 
 
-    // if (randomRequestStatus === 'loading') {
-    //     content = <Spinner text="Fetching Films for you..." />
-    // } else if (randomRequestStatus === 'succeeded') {
-    //     content = movies.map(movie => <MovieCard movie={movie} />)
-    // } else if (randomRequestStatus === 'failed') {
-    //     content = <div>{randomRequestError}</div>
-    // }
-    console.log('Our dummy data for demonstrating the home page: \n', dummyMovies)
-
-    content = (
+    if (randomRequestStatus === 'loading') {
+        content = <Spinner text="Fetching Films for you..." />
+    } else if (randomRequestStatus === 'succeeded') {
         <HomeGridContainer>
-            {dummyMovies.map((movie, index) => (
+            {movies.map((movie, index) => (
             <React.Fragment key={index}>
                 <MovieCard movie={movie} />
             </React.Fragment>
             ))}
-
         </HomeGridContainer>
-    )
+    } else if (randomRequestStatus === 'failed') {
+        content = <div>{randomRequestError}</div>
+    }
+
+    // content = (
+    //     <HomeGridContainer>
+    //         {dummyMovies.map((movie, index) => (
+    //         <React.Fragment key={index}>
+    //             <MovieCard movie={movie} />
+    //         </React.Fragment>
+    //         ))}
+
+    //     </HomeGridContainer>
+    // )
         
     
 	return (

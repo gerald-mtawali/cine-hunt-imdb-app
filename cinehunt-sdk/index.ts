@@ -71,7 +71,6 @@ async function requestMoviesFromAPI(paramKey: string, query: string, apiUrl: str
 		const response = await axios.request(options);
 		return response.data; 
 	} catch (error) {
-		console.log(error);
 		throw error;
 	}
 }
@@ -79,7 +78,6 @@ async function requestMoviesFromAPI(paramKey: string, query: string, apiUrl: str
 
 // get movie by name API fetcher
 async function getMovieByName(movieName: string): Promise<MovieDTO[]> {
-	console.log(`Requested Movie Title: ${movieName}`);
 	// trim any trailing or leading whitespace from the movie name 
 	movieName = movieName.trim();
 	
@@ -108,7 +106,6 @@ async function getMovieByName(movieName: string): Promise<MovieDTO[]> {
 // get movie by Id API fetcher
 async function getMovieById(imdbId: string): Promise<MovieDescriptionDTO>{
 	imdbId = imdbId.trim();
-	console.log(`Requested Movie Id: ${imdbId}`);
 	const movieData: MovieDetailsResponse = await requestMoviesFromAPI('tt', imdbId, baseApiUrl);
 	const movieDetails = convertMovieDetails(movieData); 
 	return movieDetails;
@@ -118,7 +115,6 @@ async function getMovieById(imdbId: string): Promise<MovieDescriptionDTO>{
 async function getTenRandomMovies(): Promise<MovieDTO[]> {
 	const randomTitles = titleGenerator({ exactly: 5, minLength: 5, wordsPerString: 1,});
 	
-	console.log(`Requested Random Movie Titles: ${randomTitles}`);
 	const movieResults: MovieDTO[] = []; 
 
 	for (const title of randomTitles){

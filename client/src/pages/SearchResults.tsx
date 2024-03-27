@@ -20,12 +20,10 @@ const ContentContainer = styled.div`
     justify-content: center;
     justify-items: center;
     width: 80%; 
-    /* border: 1px solid lime;  */
 `;
 
 export function SearchPage() {
 	const { movieTitle } = useParams();
-	// console.log("Path movie title: ", movieTitle);
 	const searchResults = useAppSelector(
 		(state: RootState) => state.movieResults.movies
 	);
@@ -43,10 +41,6 @@ export function SearchPage() {
 
 	useEffect(() => {
 		if (movieTitle && movieName !== "") {
-			console.log("run api call for finding movies");
-			console.log(
-				`Requesting the movie: ${movieName}\nsearch status: ${searchStatus}`
-			);
 			dispatch(getMovies(movieName));
 		} else if (movieName === "") {
 			dispatch(clearMovieResults());
