@@ -2,10 +2,7 @@
 
 CineHunt the application for searching the movie titles found on IMDb's website.
 
-This application uses Vite as a bundler for the code. 
-
-## Running the Application
-In order to run this application perform 
+This application uses Vite as a bundler for the code. The remaining information is generated with every create vite app command.  
 
 Currently, two official plugins are available:
 

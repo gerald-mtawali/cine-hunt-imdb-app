@@ -1,15 +1,14 @@
 // import { jsx, css } from "@emotion/react";
-import { SetStateAction, useState, useEffect } from "react";
 import styled from "@emotion/styled";
+import { SetStateAction, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import yellowSearchIcon from "../../assets/image/search-icon-yellow.svg";
-import { useAppSelector, useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch } from "../../redux/hooks";
 import {
-	selectMovieName,
-	setMovieName,
 	clearMovieName,
 	clearMovieResults,
+	setMovieName
 } from "../../redux/searchMovieSlice";
-import { Link, useNavigate } from "react-router-dom";
 
 const SearchContainer = styled.div`
 	align-self: center;
@@ -55,7 +54,6 @@ const SearchLink = styled.div`
 `;
 
 export function SearchBar() {
-	// const movieName = useAppSelector(selectMovieName);
 	const dispatch = useAppDispatch();
 	const [movieInput, setMovieInput] = useState<string>("");
 	let navigate = useNavigate();
