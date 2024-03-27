@@ -1,7 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-// import { getMovieByName } from "../api/movies";
 import { getMovieByName, MovieDTO } from "cinehunt-sdk";
-// import { MovieDTO } from "../api/cinehunt-movies-dtos.types";
 import { RootState } from "./store";
 
 export interface MovieResultState {
@@ -59,7 +57,8 @@ export const movieResultsSlice = createSlice({
 				}
 			)
 			.addCase(getMovies.rejected, (state, action) => {
-				(state.status = "failed"), (state.error = action.error.message);
+				state.status = "failed"; 
+				state.error = action.error.message;
 			});
 	},
 });

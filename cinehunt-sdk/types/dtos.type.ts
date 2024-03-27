@@ -35,7 +35,7 @@ interface SimilarMovies {
 export interface MovieDescriptionDTO {
 	imdbId: string;
 	title: string;
-	posterImg: string;
+	posterImg?: string;
 	description: string;
 	type: string;
 	year: number;

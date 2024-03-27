@@ -12,31 +12,11 @@ import { useParams } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../redux/hooks";
 import { RootState } from "../redux/store";
 import { MovieDTO } from "cinehunt-sdk";
-
-const PageDiv = styled.div`
-    display:flex;
-    flex-direction: column;
-	min-width: 80vw;
-	height: 75vh;
-    background-color: #1a2942;
-	border: 2px solid yellow;
-`;
-const ScrollableDiv = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	max-height: 72vh; 
-	overflow-y: auto;
-	overflow-x: hidden;
-	min-width: 80%;
-	margin: 5px;
-    background: transparent; 
-    border: 1px solid red;
-`;
+import { PageDiv, ScrollableDiv } from "../components/common/CommonStyledComponents";
 
 const ContentContainer = styled.div`
     flex: column; 
-    align-items: center;
+    align-items: center; 
     align-content: center;
     justify-content: center;
     justify-items: center;

@@ -3,6 +3,8 @@ import { MovieDTO } from "cinehunt-sdk";
 import styled from "@emotion/styled";
 import NoPosterImage from "../../assets/image/No-Movie-Icon.png";
 import { Link } from "react-router-dom";
+import { setImdbId, setTitle } from "../../redux/movieDetailsSlice";
+import { useAppDispatch } from "../../redux/hooks";
 
 const CardContainer = styled.div`
 	display: flex;
@@ -59,12 +61,21 @@ interface SearchPageProps {
 }
 
 export const SearchResultCard: React.FC<SearchPageProps> = ({ movie }) => {
+    const dispatch = useAppDispatch(); 
+
 	console.log(
 		"Rendering the search cards for the movie: \n",
 		movie,
 		"\n",
 		movie.title
 	);
+
+    const handleClick = () => {
+        // set the movie name and the imbdb id 
+        dispatch(setTitle(movie.title));
+        dispatch(setImdbId(movie.imdbId));
+
+    }
 	return (
 		<CardContainer>
 			<PosterImage
@@ -76,8 +87,9 @@ export const SearchResultCard: React.FC<SearchPageProps> = ({ movie }) => {
 				<p style={{margin: 3}}>{movie.actors}</p>
 			</FilmDetailsContainer>
 			<ButtonContainer>
-				<Link to={`/film/${movie.title}`}>
-					<MovieButton>View {movie.title}</MovieButton>
+                
+				<Link to={`/film/${movie.title}`} onClick={handleClick}>
+					<MovieButton >View {movie.title}</MovieButton>
 				</Link>
 			</ButtonContainer>
 		</CardContainer>
