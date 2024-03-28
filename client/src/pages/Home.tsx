@@ -39,28 +39,17 @@ export function HomePage() {
     if (randomRequestStatus === 'loading') {
         content = <Spinner text="Fetching Films for you..." />
     } else if (randomRequestStatus === 'succeeded') {
-        <HomeGridContainer>
+
+        content = (<HomeGridContainer>
             {movies.map((movie, index) => (
             <React.Fragment key={index}>
                 <MovieCard movie={movie} />
             </React.Fragment>
             ))}
-        </HomeGridContainer>
+        </HomeGridContainer>)
     } else if (randomRequestStatus === 'failed') {
         content = <div>{randomRequestError}</div>
-    }
-
-    // content = (
-    //     <HomeGridContainer>
-    //         {dummyMovies.map((movie, index) => (
-    //         <React.Fragment key={index}>
-    //             <MovieCard movie={movie} />
-    //         </React.Fragment>
-    //         ))}
-
-    //     </HomeGridContainer>
-    // )
-        
+    }   
     
 	return (
 		<>

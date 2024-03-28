@@ -61,3 +61,7 @@ ___
 With a little more time, this application would have been a bit more polished, including creating a docker container easy for it to be used on remote environments. I would have included cypress tests as well to test the e2e functionality of the application.
 
 Regardless of the state of the application, I am proud with the amount that I have learnt over the past few days. And I believe that the work is a testament to my ability to learn quickly, and my work ethic. 
+
+I've included the designs of the application, in the folder `designs/`, to showcase my vision when building this application. All designs were created with Figma. 
+
+Irregardless of the state of the application, working on this was a lot of fun.

@@ -13,7 +13,7 @@ export const ScrollableDiv = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	max-height: 72vh; 
+	height: 72vh; 
 	overflow-y: auto;
 	overflow-x: hidden;
 	min-width: 80%;

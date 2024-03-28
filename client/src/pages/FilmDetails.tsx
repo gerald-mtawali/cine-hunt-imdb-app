@@ -12,7 +12,15 @@ import {
 } from "../components/common/CommonStyledComponents";
 import { DescriptionBox } from "../components/Film/FilmDetails";
 import NoPosterImage from "../assets/image/No-Movie-Icon.png";
+import React from "react";
 
+/*
+	This last file is hastily thrown together. With a little more time I would create TWO additional components. 
+	One for the User Reviews and one for the keywords. I would heavily alter the styling as well to match the designs 
+	of the application. I would have added an additional component to provide the images of the actors. And another 
+	component to provide similar movies to the selected movie.
+
+*/
 interface styledProps {
 	imageUrl: string;
 }
@@ -20,36 +28,30 @@ interface styledProps {
 export const PosterBackgroundDiv = styled.div<styledProps>`
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width: 100%; 
-	height: 1390px; 
+	width: 40%;
+	height: 60%;
 	background-image: url(${(props) => props.imageUrl});
-	background-size: cover; 
-	background-position: center; 
+	background-size: contain;
+	background-repeat: no-repeat;
+	margin: 3% 5%;
 `;
 
-const TransparentDiv = styled.div`
-	background-color: transparent;
-	border: 1px solid violet;
+const PosterDetailsDiv = styled.div`
+	width: 90%;
+	height: 50vh;
 	display: flex;
-	flex-direction: column;
-	align-items: flex-end;
-    align-content: flex-end;
-	justify-content: flex-end;
-    justify-items: flex-end;
-	width: 100%;
-    height: 80%; 
+	flex-direction: row;
 `;
 
-const ContentContainer = styled.div`
-	flex: 1 auto;
-	display: flex;
-	flex-direction: column;
-	background-color: rgba(3, 5, 1, 0.8);
-	width: 100%;
-	height: 100%;
-`;
+const KeyWordFragment = (keywords: string[]): React.ReactNode => {
+	return (
+		<React.Fragment>
+			{keywords.map((word, index) => (
+				<p key={index}>{word}</p>
+			))}
+		</React.Fragment>
+	);
+};
 
 export function FilmDetailsPage() {
 	const { movieTitle } = useParams();
@@ -72,11 +74,11 @@ export function FilmDetailsPage() {
 	);
 
 	useEffect(() => {
-		if (movieTitle && title != "" && detailsStatus === "idle") {
+		if (movieTitle && title != "") {
 			// only get it if we haven't made the request already
 			dispatch(getMovieDetails(imdbId));
 		}
-	}, [movieTitle, title, detailsStatus, dispatch]);
+	}, [movieTitle, title, dispatch]);
 	let content;
 
 	if (!movieTitle) {
@@ -87,30 +89,38 @@ export function FilmDetailsPage() {
 		if (movieDetails) {
 			// get the imageUrl
 			const { posterImg } = movieDetails;
+
 			content = (
-				<PosterBackgroundDiv
-					imageUrl={posterImg ? posterImg : NoPosterImage}
-				>
-					<TransparentDiv>
-						<ContentContainer>
-							<h1>{movieTitle}</h1>
-							<DescriptionBox
-								year={movieDetails.year}
-								genre={movieDetails.genre}
-								type={movieDetails.type}
-								description={movieDetails.description}
-								aggregateRating={
-									movieDetails.review?.aggregateRating
-								}
-								productionCompany={
-									movieDetails.productionCompany
-								}
-								actors={movieDetails.actors}
-								director={movieDetails.director}
-							/>
-						</ContentContainer>
-					</TransparentDiv>
-				</PosterBackgroundDiv>
+				<ScrollableDiv>
+					<PosterDetailsDiv>
+						<PosterBackgroundDiv
+							imageUrl={posterImg ? posterImg : NoPosterImage}
+						/>
+						<DescriptionBox
+							year={movieDetails.year}
+							genre={movieDetails.genre}
+							type={movieDetails.type}
+							description={movieDetails.description}
+							aggregateRating={
+								movieDetails.review?.aggregateRating
+							}
+							productionCompany={movieDetails.productionCompany}
+							actors={movieDetails.actors}
+							director={movieDetails.director}
+						/>
+					</PosterDetailsDiv>
+					<div>
+						<h1> User Reviews </h1>
+					</div>
+					<div>
+						<h1> Key Words </h1>
+						{movieDetails.keywords.length > 0 ? (
+							KeyWordFragment(movieDetails.keywords)
+						) : (
+							<p>No key words</p>
+						)}
+					</div>
+				</ScrollableDiv>
 			);
 		}
 	} else if (detailsStatus === "failed") {
@@ -120,7 +130,8 @@ export function FilmDetailsPage() {
 	return (
 		<>
 			<PageDiv>
-				<ScrollableDiv>{content}</ScrollableDiv>
+				<h1>{movieTitle}</h1>
+				{content}
 			</PageDiv>
 		</>
 	);

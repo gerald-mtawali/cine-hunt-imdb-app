@@ -3,26 +3,25 @@ import styled from "@emotion/styled";
 
 const Container = styled.div`
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	align-items: center;
 	width: 100%;
-	height: 30vh;
-	border: 1px solid #fff;
+	height: 50vh;
 `;
 
 const DetailsGrid = styled.div`
 	display: grid;
 	grid-template-columns: 35% 65%;
-	grid-auto-rows: 30px;
-	row-gap: 10px;
+	row-gap: 3%;
 	column-gap: 1px;
-	width: 50%;
-	border: 1px solid blue;
+	width: 100%;
+	height: 30vh;
+	margin: 0px 0px 10px 0px;
 `;
 
 const GridItemKey = styled.div`
 	font-family: "Syne", sans-serif;
-	font-weight: bold; // Assuming keys are bold
+	font-weight: bold;
 	word-wrap: break-word;
 	text-align: left;
 `;
@@ -39,10 +38,20 @@ const DescriptionContainer = styled.div`
 	align-content: flex-start;
 	justify-content: flex-start;
 	justify-items: flex-start;
-	width: 45%;
-	min-height: 100%;
+	width: 100%;
+	min-height: 80%;
 	text-align: left;
 	margin: 5px;
+	padding: 0px;
+
+	.h3 {
+		margin: 2px 1px 2px 0px; 
+		margin-block-start: 0%;
+		margin-block-end: 0%;
+	}
+	.p {
+		margin: 0px;
+	}
 `;
 
 interface MovieDescriptionProps {
